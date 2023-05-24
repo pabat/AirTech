@@ -9,7 +9,7 @@ Air Qaulity Monitoring System
 
 **Alerts and Notifications:** The system can send automated alerts and notifications to users' mobile devices when the air quality exceeds certain thresholds or if any abnormal conditions are detected. This enables users to take immediate action or change to maintain a healthy environment.
 
-
+#### Sensors' specs:
 
 **DHT11**: The DHT11 sensor is an affordable option for measuring temperature and humidity. It allows monitoring of indoor climate conditions, which can impact comfort and health.
 
@@ -17,12 +17,13 @@ Air Qaulity Monitoring System
 
 **ENS160**: The ENS160 sensor is capable of measuring Carbon Dioxide (CO2) and Volatile Organic Compounds (VOCs) simultaneously. It provides valuable insights into indoor air quality and can help identify potential sources of pollution.
 
-**MQ131**: The MQ131 sensor specializes in detecting Ozone (O3). The MQ131 Ozone Gas Sensor has several features that make it a suitable choice for a smart air quality monitoring system:
+**MQ131**: The MQ131 sensor specializes in detecting Ozone (O3). MQ131 has several features that make it a suitable choice for a smart air quality monitoring system:
 * It has a high sensitivity to ozone in a wide range, which means it can detect even low ozone concentrations in the air.
 * It has a long lifespan and is relatively low cost, making it an affordable option for large-scale air quality monitoring systems.
 * Its simple drive circuit makes it easy to integrate into existing systems and combine with other sensors.
 * It is widely used in domestic and industrial ozone concentration alarms and portable ozone concentration detectors.
-_Technical details:_
+
+**_Technical details:_**
 - Sensitivity: 0.1 - 10ppm Ozone
 - Response time: <10s
 - Recovery time: <30s
