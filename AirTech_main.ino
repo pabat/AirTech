@@ -14,8 +14,8 @@
 
 FirebaseData firebaseData;
 
-SDS011 mySensor(D2, D1); // SDS011 RX, TX pins
-DHT dht(DHTPIN, DHTTYPE); // DHT11 sensor
+SDS011 mySensor(D2, D1); 
+DHT dht(DHTPIN, DHTTYPE); 
 
 void setup() {
   Serial.begin(115200);
@@ -27,21 +27,20 @@ void setup() {
     Serial.println("Connecting to Wi-Fi...");
   }
 
-  // Initialize Firebase
+  // Firebase
   Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
 
-  // Initialize SDS011 sensor
+  // SDS011 sensor
   mySensor.begin();
 
-  // Initialize DHT11 sensor
+  // DHT11 sensor
   dht.begin();
 
-  // Initialize I2C bus
+  //  I2C bus
   Wire.begin();
 }
 
 void loop() {
-  // Read SDS011 sensor data
   if (mySensor.read()) {
     float pm25_high_byte = mySensor.getPM2P5High();
     float pm25_low_byte = mySensor.getPM2P5Low();
@@ -57,7 +56,7 @@ void loop() {
     Serial.print(pm10);
     Serial.println(" µg/m³");
 
-    // Update Firebase with SDS011 sensor data
+    // Update Firebase 
     Firebase.setFloat(firebaseData, SENSOR_DATA_PATH + "/PM2.5", pm25);
     Firebase.setFloat(firebaseData, SENSOR_DATA_PATH + "/PM10", pm10);
     if (Firebase.failed()) {
@@ -68,7 +67,7 @@ void loop() {
     }
   }
 
-  // Read DHT11 sensor data
+  // DHT11 sensor data
   delay(2000);
   float temperature = dht.readTemperature();
   float humidity = dht.readHumidity();
@@ -84,7 +83,7 @@ void loop() {
     Serial.print(humidity);
     Serial.println(" %");
 
-    // Update Firebase with DHT11 sensor data
+    // Update Firebase
     Firebase.setFloat(firebaseData, SENSOR_DATA_PATH + "/Temperature", temperature);
     Firebase.setFloat(firebaseData, SENSOR_DATA_PATH + "/Humidity", humidity);
     if (Firebase.failed()) {
@@ -95,7 +94,7 @@ void loop() {
     }
   }
 
-  // Read ENS160 sensor data
+  // ENS160 sensor data
   delay(2000);
   byte tvoc_MSB = Wire.readReg(sensor_address, 0x22);
   byte tvoc_LSB = Wire.readReg(sensor_address, 0x23);
@@ -111,13 +110,21 @@ void loop() {
   Serial.print("CO2: ");
   Serial.print(eco2);
   Serial.println(" ppm");
-
-  // Calculate ozone concentration
-  float ozoneConcentration = calculateOzoneConcentration(sensorValue);
-
-  // Update Firebase with ENS160 sensor data
+  
+    // update Firebase with ENS160 sensor data
   Firebase.setInt(firebaseData, SENSOR_DATA_PATH + "/TVOC", tvoc);
   Firebase.setInt(firebaseData, SENSOR_DATA_PATH + "/CO2", eco2);
+  if (Firebase.failed()) {
+    Serial.println("Error updating ENS160 sensor data to Firebase");
+    Serial.println(firebaseData.errorReason());
+  } else {
+    Serial.println("ENS160 sensor data updated to Firebase");
+  }
+  
+  //  ozone concentration
+  float ozoneConcentration = calculateOzoneConcentration(sensorValue);
+  
+
   Firebase.setFloat(firebaseData, SENSOR_DATA_PATH + "/OzoneConcentration", ozoneConcentration);
   if (Firebase.failed()) {
     Serial.println("Error updating ENS160 sensor data to Firebase");
@@ -125,7 +132,6 @@ void loop() {
   } else {
     Serial.println("ENS160 sensor data updated to Firebase");
   }
-
   delay(5000);
 }
 
