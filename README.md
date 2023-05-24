@@ -9,11 +9,22 @@ Air Qaulity Monitoring System
 
 **Alerts and Notifications:** The system can send automated alerts and notifications to users' mobile devices when the air quality exceeds certain thresholds or if any abnormal conditions are detected. This enables users to take immediate action or change to maintain a healthy environment.
 
-#### Sensors' specs:
+## Sensors' specs:
 
-**DHT11**: The DHT11 sensor is an affordable option for measuring temperature and humidity. It allows monitoring of indoor climate conditions, which can impact comfort and health.
+**DHT11**: The DHT11 sensor is an affordable option for measuring temperature and humidity. 
+* It has calibrated digital signal output for accurate temperature and humidity measurement. 
+* It has resistant-type humidity and NTC temperature measurements for reliable sensing. 
+* It has a single-wire serial interface for easy system integration.
+* It has a small size, low power consumption, and up to 20-meter signal transmission range make.
 
-**SDS011**:
+**SDS011**: The SDS011 sensor can measure particulate matter (PM2.5 and PM10) in the air, providing information about air pollution levels.
+`PM2.5 value: PM2.5 (μg/m³) = ((PM2.5 High byte * 256) + PM2.5 low byte) / 10
+PM10 value: PM10 (μg/m³) = ((PM10 high byte * 256) + PM10 low byte) / 10`
+
+* It uses the laser scattering principle to detect particles in the air. When particles pass through the detecting area, light scattering is induced, which is then transformed into electrical signals. 
+* It can detect particle concentrations between 0.3 to 10μm in less than 10 seconds. 
+* It has a high resolution of 0.3μg/m3 for precise measurements of PM2.5 & PM10 particles.
+* It can easily be integrated with its UART output and built-in fan. UART output allows for communication with other devices, while its built-in fan ensures stable and consistent readings over time by preventing dust accumulation on the sensor's surface.
 
 **ENS160**: The ENS160 sensor can measrure Carbon Dioxide (CO2) and Volatile Organic Compounds (VOCs) simultaneously.
 * It incorporates intelligent algorithms that perform advanced processing of raw sensor measurements directly on the chip enabling accurate calculations of all measurings without overwhelming the main host processor.
