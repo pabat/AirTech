@@ -18,8 +18,8 @@ Air Qaulity Monitoring System
 * It has a small size, low power consumption, and up to 20-meter signal transmission range make.
 
 **SDS011**: The SDS011 sensor can measure particulate matter (PM2.5 and PM10) in the air, providing information about air pollution levels.
-`PM2.5 value: PM2.5 (μg/m³) = ((PM2.5 High byte * 256) + PM2.5 low byte) / 10
-PM10 value: PM10 (μg/m³) = ((PM10 high byte * 256) + PM10 low byte) / 10`
+`PM2.5 value: PM2.5 (μg/m³) = ((PM2.5 High byte * 256) + PM2.5 low byte) / 10`
+`PM10 value: PM10 (μg/m³) = ((PM10 high byte * 256) + PM10 low byte) / 10`
 
 * It uses the laser scattering principle to detect particles in the air. When particles pass through the detecting area, light scattering is induced, which is then transformed into electrical signals. 
 * It can detect particle concentrations between 0.3 to 10μm in less than 10 seconds. 
@@ -37,13 +37,3 @@ PM10 value: PM10 (μg/m³) = ((PM10 high byte * 256) + PM10 low byte) / 10`
 * It has a long lifespan and is relatively low cost, making it an affordable option for large-scale air quality monitoring systems.
 * Its simple drive circuit makes it easy to integrate into existing systems and combine with other sensors.
 * It is widely used in domestic and industrial ozone concentration alarms and portable ozone concentration detectors.
-
-**_Technical details:_**
-- Sensitivity: 0.1 - 10ppm Ozone
-- Response time: <10s
-- Recovery time: <30s
-- Heater voltage: 5.0V ±0.2V AC or DC
-- Load resistance: adjustable (recommended value is about 20kΩ)
-- Operating temperature range: -10°C to +50°C
-- Storage temperature range: -20°C to +70°C
-
