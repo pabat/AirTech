@@ -15,7 +15,11 @@ Air Qaulity Monitoring System
 
 **SDS011**:
 
-**ENS160**: The ENS160 sensor is capable of measuring Carbon Dioxide (CO2) and Volatile Organic Compounds (VOCs) simultaneously. It provides valuable insights into indoor air quality and can help identify potential sources of pollution.
+**ENS160**: The ENS160 sensor can measrure Carbon Dioxide (CO2) and Volatile Organic Compounds (VOCs) simultaneously.
+* It incorporates intelligent algorithms that perform advanced processing of raw sensor measurements directly on the chip enabling accurate calculations of all measurings without overwhelming the main host processor.
+* It is built to be maintenance-free, reducing the need for frequent calibration or replacement, which is essential for continuous and reliable operation.
+* It offers both I2C and SPI digital interfaces, providing flexibility and ease of integration with various microcontrollers. 
+* It is available in a compact LGA package, making it easy to mount on a printed circuit board (PCB) or integrate into existing devices. The sensor also features an SPI or I2C slave interface with a separate VDDIO and simplifies the integration process and ensures efficient data exchange between the sensor and the system.
 
 **MQ131**: The MQ131 sensor specializes in detecting Ozone (O3). MQ131 has several features that make it a suitable choice for a smart air quality monitoring system:
 * It has a high sensitivity to ozone in a wide range, which means it can detect even low ozone concentrations in the air.
@@ -27,11 +31,8 @@ Air Qaulity Monitoring System
 - Sensitivity: 0.1 - 10ppm Ozone
 - Response time: <10s
 - Recovery time: <30s
-- Heater resistance: 31Ω ±3Ω at room temperature
-- Heater current: <180mA at room temperature
 - Heater voltage: 5.0V ±0.2V AC or DC
 - Load resistance: adjustable (recommended value is about 20kΩ)
 - Operating temperature range: -10°C to +50°C
-- Operating humidity range: <95%RH (no condensation)
 - Storage temperature range: -20°C to +70°C
 
