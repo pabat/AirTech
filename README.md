@@ -11,7 +11,7 @@ Air Qaulity Monitoring System
 
 ## Sensors' specs:
 
-**DHT11**: The DHT11 sensor is an affordable option for measuring temperature and humidity. 
+**DHT22**: The DHT22 sensor is an affordable option for measuring temperature and humidity. 
 * It has calibrated digital signal output for accurate temperature and humidity measurement. 
 * It has resistant-type humidity and NTC temperature measurements for reliable sensing. 
 * It has a single-wire serial interface for easy system integration.
