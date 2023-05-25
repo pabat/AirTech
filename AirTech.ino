@@ -3,6 +3,8 @@
 #include <WiFi.h>
 #include <DHT.h>
 #include <Wire.h>
+#include "ScioSense_ENS160.h"  
+
 
 #define WIFI_SSID "YourWiFiSSID"
 #define WIFI_PASSWORD "YourWiFiPassword"
@@ -14,11 +16,13 @@
 
 FirebaseData firebaseData;
 
-SDS011 mySensor(D2, D1); 
-DHT dht(DHTPIN, DHTTYPE); 
+SDS011 mySensor(RX, TX); 
+DHT dht(D8); 
+ScioSense_ENS160      ens160(ENS160_I2CADDR_0);
 
 void setup() {
   Serial.begin(115200);
+ 
 
   // Connect to Wi-Fi
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
@@ -33,11 +37,16 @@ void setup() {
   // SDS011 sensor
   mySensor.begin();
 
-  // DHT11 sensor
+  // DHT22 sensor
   dht.begin();
 
   //  I2C bus
   Wire.begin();
+  
+  ens160.begin();
+  if (ens160.available()) {
+    ens160.setMode(ENS160_OPMODE_STD) ? "done." : "failed!";
+  }
 }
 
 void loop() {
@@ -67,7 +76,7 @@ void loop() {
     }
   }
 
-  // DHT11 sensor data
+  // DHT sensor data
   delay(2000);
   float temperature = dht.readTemperature();
   float humidity = dht.readHumidity();
@@ -94,22 +103,18 @@ void loop() {
     }
   }
 
-  // ENS160 sensor data
+ 
   delay(2000);
-  byte tvoc_MSB = Wire.readReg(sensor_address, 0x22);
-  byte tvoc_LSB = Wire.readReg(sensor_address, 0x23);
-  byte eco2_MSB = Wire.readReg(sensor_address, 0x24);
-  byte eco2_LSB = Wire.readReg(sensor_address, 0x25);
-
-  int tvoc = (tvoc_MSB * 256) + tvoc_LSB;
-  int eco2 = (eco2_MSB * 256) + eco2_LSB;
-
-  Serial.print("VOC: ");
-  Serial.print(tvoc);
-  Serial.println(" ppb");
-  Serial.print("CO2: ");
-  Serial.print(eco2);
-  Serial.println(" ppm");
+  
+   // ENS160 sensor data
+if (ens160.available()) {
+    ens160.measure(0);
+  
+    ens160.getAQI();
+    Serial.print("TVOC: ");Serial.print(ens160.getTVOC());Serial.print("ppb\t");
+    Serial.print("eCO2: ");Serial.print(ens160.geteCO2());Serial.print("ppm\t");
+  }
+  delay(1000);
   
     // update Firebase with ENS160 sensor data
   Firebase.setInt(firebaseData, SENSOR_DATA_PATH + "/TVOC", tvoc);
